@@ -71,13 +71,13 @@ export default function App() {
 
   return (
     <div
-      className="min-h-screen bg-background text-foreground"
+      className="portfolio-shell min-h-screen bg-background text-foreground"
       style={{ fontFamily: "'DM Sans', sans-serif" }}
     >
       {/* ── Fixed Nav ── */}
-      <nav className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-5">
+      <nav className="site-nav fixed top-0 left-0 right-0 z-50 flex justify-center">
         <ul
-          className="flex gap-8 px-8 py-3 rounded-full"
+          className="nav-list flex rounded-full"
           style={{
             background: "rgba(245,246,248,0.75)",
             backdropFilter: "blur(16px)",
@@ -89,19 +89,17 @@ export default function App() {
           {NAV_ITEMS.map((item) => (
             <li key={item}>
               <button
+                className="nav-button"
                 onClick={() => smoothScroll(item)}
                 style={{
                   background: "none",
                   border: "none",
                   cursor: "pointer",
-                  fontSize: "0.72rem",
-                  letterSpacing: "0.12em",
                   textTransform: "uppercase",
                   fontFamily: "'DM Sans', sans-serif",
                   fontWeight: active === item ? 500 : 300,
                   color: active === item ? "#1c2130" : "#7a8499",
                   transition: "color 0.3s, font-weight 0.3s",
-                  padding: "2px 0",
                 }}
               >
                 {item}
@@ -114,24 +112,16 @@ export default function App() {
       {/* ── Hero ── */}
       <section
         id="home"
-        style={{
-          padding: "calc(4rem + 56px) 1.5rem 2rem",
-          minHeight: "100svh",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-        }}
+        className="hero-section"
       >
         {/* Framed image card */}
         <div
+          className="hero-card"
           style={{
             position: "relative",
             width: "100%",
-            maxWidth: 960,
             margin: "0 auto",
-            borderRadius: "1.5rem",
             overflow: "hidden",
-            aspectRatio: "16 / 9",
             boxShadow: "0 8px 48px rgba(28,33,48,0.14)",
           }}
         >
@@ -152,11 +142,10 @@ export default function App() {
           {/* PORTFOLIO title */}
           <div className="absolute inset-0 flex items-center justify-center">
             <h1
+              className="hero-title"
               style={{
                 fontFamily: "'Playfair Display', serif",
                 fontWeight: 400,
-                fontSize: "clamp(2.4rem, 7vw, 4.5rem)",
-                letterSpacing: "0.38em",
                 color: "#ffffff",
                 textShadow: "0 2px 32px rgba(28,33,48,0.3)",
                 userSelect: "none",
@@ -169,6 +158,7 @@ export default function App() {
         </div>
         {/* scroll cue below the card */}
         <div
+          className="scroll-cue"
           style={{
             display: "flex",
             flexDirection: "column",
@@ -198,36 +188,32 @@ export default function App() {
       {/* ── Skills ── */}
       <section
         id="skills"
-        className="py-28 px-6"
+        className="content-section"
         style={{ maxWidth: 880, margin: "0 auto" }}
       >
         <p
+          className="section-label"
           style={{
-            fontSize: "0.68rem",
-            letterSpacing: "0.2em",
             textTransform: "uppercase",
             color: "#8fa8c8",
-            marginBottom: "0.75rem",
           }}
         >
           what I work with
         </p>
         <h2
+          className="section-heading"
           style={{
             fontFamily: "'Playfair Display', serif",
             fontWeight: 400,
-            fontSize: "clamp(2rem, 4.5vw, 3.2rem)",
             color: "#1c2130",
-            marginBottom: "4rem",
           }}
         >
           Skills
         </h2>
         <div
+          className="skills-grid"
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
-            gap: "2.5rem",
           }}
         >
           {SKILLS.map((group) => (
@@ -285,8 +271,8 @@ export default function App() {
       </section>
 
       <div
+        className="section-divider"
         style={{
-          maxWidth: 880,
           margin: "0 auto",
           height: 1,
           background: "rgba(28,33,48,0.08)",
@@ -296,44 +282,39 @@ export default function App() {
       {/* ── Projects ── */}
       <section
         id="projects"
-        className="py-28 px-6"
+        className="content-section"
         style={{ maxWidth: 880, margin: "0 auto" }}
       >
         <p
+          className="section-label"
           style={{
-            fontSize: "0.68rem",
-            letterSpacing: "0.2em",
             textTransform: "uppercase",
             color: "#8fa8c8",
-            marginBottom: "0.75rem",
           }}
         >
           selected work
         </p>
         <h2
+          className="section-heading"
           style={{
             fontFamily: "'Playfair Display', serif",
             fontWeight: 400,
-            fontSize: "clamp(2rem, 4.5vw, 3.2rem)",
             color: "#1c2130",
-            marginBottom: "4rem",
           }}
         >
           Projects
         </h2>
-        <div
-          style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}
-        >
+        <div className="project-list">
           {PROJECTS.map((project, i) => (
             <a
               key={project.title}
               href={project.url}
               target="_blank"
               rel="noopener noreferrer"
+              className="project-card"
               style={{
                 display: "block",
                 textDecoration: "none",
-                borderRadius: "1rem",
                 overflow: "hidden",
                 background: project.bg,
                 transform:
@@ -350,61 +331,49 @@ export default function App() {
               onMouseLeave={() => setHoveredProject(null)}
             >
               <div
+                className="project-card-inner"
                 style={{
-                  padding: "2.5rem",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "space-between",
-                  gap: "1.5rem",
-                  flexWrap: "wrap",
                 }}
               >
-                <div style={{ flex: 1, minWidth: 220 }}>
+                <div className="project-copy" style={{ flex: 1 }}>
                   <div
+                    className="project-index"
                     style={{
-                      fontSize: "0.65rem",
-                      letterSpacing: "0.18em",
                       color: "#7a8499",
                       textTransform: "uppercase",
-                      marginBottom: "0.75rem",
                     }}
                   >
                     {String(i + 1).padStart(2, "0")}
                   </div>
                   <h3
+                    className="project-title"
                     style={{
                       fontFamily: "'Playfair Display', serif",
                       fontWeight: 400,
-                      fontSize: "1.5rem",
                       color: "#1c2130",
-                      marginBottom: "0.75rem",
                     }}
                   >
                     {project.title}
                   </h3>
                   <p
+                    className="project-description"
                     style={{
-                      fontSize: "0.875rem",
                       color: "#4a5568",
                       fontWeight: 300,
                       lineHeight: 1.7,
-                      marginBottom: "1.25rem",
-                      maxWidth: 400,
                     }}
                   >
                     {project.description}
                   </p>
-                  <div
-                    style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}
-                  >
+                  <div className="tag-list">
                     {project.tags.map((tag) => (
                       <span
                         key={tag}
+                        className="project-tag"
                         style={{
-                          padding: "0.25rem 0.75rem",
-                          borderRadius: "9999px",
-                          fontSize: "0.7rem",
-                          letterSpacing: "0.05em",
                           background: "rgba(28,33,48,0.08)",
                           color: "#1c2130",
                         }}
@@ -416,10 +385,10 @@ export default function App() {
                 </div>
                 {/* arrow */}
                 <div
+                  className="project-visit"
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    gap: "0.5rem",
                     color: "#1c2130",
                     opacity: hoveredProject === project.title ? 1 : 0.3,
                     transition: "opacity 0.4s",
@@ -464,8 +433,8 @@ export default function App() {
       </section>
 
       <div
+        className="section-divider"
         style={{
-          maxWidth: 880,
           margin: "0 auto",
           height: 1,
           background: "rgba(28,33,48,0.08)",
@@ -475,39 +444,34 @@ export default function App() {
       {/* ── Contact ── */}
       <section
         id="contact"
-        className="py-28 px-6"
+        className="content-section"
         style={{ maxWidth: 880, margin: "0 auto" }}
       >
         <p
+          className="section-label"
           style={{
-            fontSize: "0.68rem",
-            letterSpacing: "0.2em",
             textTransform: "uppercase",
             color: "#8fa8c8",
-            marginBottom: "0.75rem",
           }}
         >
           get in touch
         </p>
         <h2
+          className="section-heading contact-heading"
           style={{
             fontFamily: "'Playfair Display', serif",
             fontWeight: 400,
-            fontSize: "clamp(2rem, 4.5vw, 3.2rem)",
             color: "#1c2130",
-            marginBottom: "1.25rem",
           }}
         >
           Contact
         </h2>
         <p
+          className="contact-copy"
           style={{
-            fontSize: "0.875rem",
             color: "#7a8499",
             fontWeight: 300,
             lineHeight: 1.8,
-            maxWidth: 360,
-            marginBottom: "3rem",
           }}
         >
           언제든지 편하게 연락 주세요.
@@ -518,10 +482,10 @@ export default function App() {
           href="https://github.com/minjung1ee"
           target="_blank"
           rel="noopener noreferrer"
+          className="contact-link"
           style={{
             display: "inline-flex",
             alignItems: "center",
-            gap: "1rem",
             textDecoration: "none",
           }}
         >
@@ -562,11 +526,9 @@ export default function App() {
 
       {/* ── Footer ── */}
       <footer
+        className="site-footer"
         style={{
           textAlign: "center",
-          padding: "2.5rem 1.5rem",
-          fontSize: "0.7rem",
-          letterSpacing: "0.08em",
           color: "#b0b8cc",
           fontWeight: 300,
         }}
